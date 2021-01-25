@@ -1,1 +1,29 @@
-<p>formulario works!</p>
+<p>Matricula: 123</p>
+
+
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Dados Básicos
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-dado-basico></app-dado-basico>
+  </mat-expansion-panel>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Dados Funcionais
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-dado-funcional></app-dado-funcional>
+  </mat-expansion-panel>
+  <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Contato
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-contato></app-contato>
+    </mat-expansion-panel>
+</mat-accordion>

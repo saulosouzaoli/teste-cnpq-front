@@ -1,13 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Funcionario } from 'src/app/models/funcionario';
 
 @Component({
   selector: 'app-dado-basico',
   templateUrl: './dado-basico.component.html',
-  styleUrls: ['./dado-basico.component.css']
+  styleUrls: ['./dado-basico.component.scss']
 })
 export class DadoBasicoComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  funcionario!: Funcionario;
+
+  constructor(public) { }
 
   ngOnInit(): void {
   }

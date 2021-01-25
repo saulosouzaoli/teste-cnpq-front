@@ -1,0 +1,16 @@
+
+    <mat-form-field appearance="standard" >
+      <mat-label>Usuário</mat-label>
+      <input matInput placeholder="admin" />
+    </mat-form-field>
+  <br/>
+    <mat-form-field appearance="standard" >
+      <mat-label>Senha:</mat-label>
+      <input matInput placeholder="admin" type="password" />
+    </mat-form-field>
+
+
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+        <button mat-raised-button (click)="fechar()">Fechar</button>
+        <button mat-raised-button  color="primary" (click)="logar()">Entrar</button>
+      </div>
