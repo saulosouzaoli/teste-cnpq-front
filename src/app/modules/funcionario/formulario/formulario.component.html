@@ -1,29 +1,42 @@
-<p>Matricula: 123</p>
-
+<p>Matricula: {{funcionario.matricula}}</p>
+<p *ngIf="isAdm()">Nome do Funcionario: {{funcionario.dadosBasicos?.nome}}</p>
 
 <mat-accordion>
-  <mat-expansion-panel hideToggle>
+
+  <mat-expansion-panel hideToggle *ngIf="exibirDadosPessoais()">
     <mat-expansion-panel-header>
       <mat-panel-title>
         Dados Básicos
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <app-dado-basico></app-dado-basico>
+    <app-dados-basicos [funcionario]="funcionario" (funcionarioChange)="attFuncionario($event)"></app-dados-basicos>
   </mat-expansion-panel>
-  <mat-expansion-panel hideToggle>
+
+  <mat-expansion-panel hideToggle >
     <mat-expansion-panel-header>
       <mat-panel-title>
         Dados Funcionais
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <app-dado-funcional></app-dado-funcional>
+    <app-dado-funcional [funcionario]="funcionario"></app-dado-funcional>
   </mat-expansion-panel>
-  <mat-expansion-panel hideToggle>
+
+  <mat-expansion-panel hideToggle *ngIf="exibirDadosPessoais()">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Contato
+         Endereço
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <app-contato></app-contato>
+      <app-endereco [funcionario]="funcionario"></app-endereco>
     </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle *ngIf="exibirDadosPessoais()">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Contato
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-contato [funcionario]="funcionario"></app-contato>
+  </mat-expansion-panel>
+
 </mat-accordion>

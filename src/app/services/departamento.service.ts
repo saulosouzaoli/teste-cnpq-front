@@ -21,4 +21,5 @@ export class DepartamentoService extends GenericService<Departamento> {
   }
 
 
+
 }

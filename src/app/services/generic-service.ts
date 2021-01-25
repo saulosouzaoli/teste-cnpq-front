@@ -8,7 +8,7 @@ export abstract class GenericService<T>{
   }
 
   getBaseUrl(): string {
-    return "localhost:8080";
+    return "http://localhost:8080";
   }
 
   abstract getPath(): string;
@@ -19,7 +19,24 @@ export abstract class GenericService<T>{
 
   findById(id: number): Observable<T> {
 
-    return this.http.get<T>(this.getUrlCompleta(`/findById/${id}`));
+    return this.http.get<T>(this.getUrlCompleta(`/${id}`));
   }
+
+  findAll(): Observable<T[]> {
+
+    return this.http.get<T[]>(this.getUrlCompleta(`/`));
+  }
+
+  save(obj:T): Observable<T> {
+
+    return this.http.post<T>(this.getUrlCompleta(`/`),obj);
+  }
+
+
+  delete(id:number): Observable<T> {
+
+    return this.http.delete<T>(this.getUrlCompleta(`/${id}`));
+  }
+
 
 }

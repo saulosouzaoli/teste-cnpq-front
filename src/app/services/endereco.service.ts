@@ -1,3 +1,4 @@
+import { Funcionario } from 'src/app/models/funcionario';
 import { Injectable, Directive } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable, of } from 'rxjs';
@@ -20,5 +21,38 @@ export class EnderecoService extends GenericService<Endereco> {
     return '/endereco';
   }
 
+  buscarPorFuncionario(funcionario: Funcionario): Observable<Endereco> {
+    return this.http.get<Endereco>(this.getUrlCompleta(`/buscarPorFuncionario/${funcionario.id}`));
+  }
+
+  getUf():string[]{
+    return ['RO',
+    'AC',
+    'AM',
+    'RR',
+    'PA',
+    'AP',
+    'TO',
+    'MA',
+    'PI',
+    'CE',
+    'RN',
+    'PB',
+    'PE',
+    'AL',
+    'SE',
+    'BA',
+    'MG',
+    'ES',
+    'RJ',
+    'SP',
+    'PR',
+    'SC',
+    'RS',
+    'MS',
+    'MT',
+    'GO',
+    'DF'];
+  }
 
 }

@@ -1,1 +1,42 @@
-<p>dado-funcional works!</p>
+<form [formGroup]="dadosFuncionaisForm">
+
+  <mat-form-field appearance="standard">
+    <mat-label>Matricula</mat-label>
+    <input matInput required formControlName="matricula" maxlength="10" minlength="1">
+    <mat-error *ngIf="dadosFuncionaisForm.get('matricula')?.hasError('required')">
+      *Campo obrigatório.
+    </mat-error>
+  </mat-form-field>
+  <br />
+
+  <mat-form-field appearance="standard">
+    <mat-label>Função</mat-label>
+    <mat-select required formControlName="funcao">
+      <mat-option *ngFor="let t of funcoes" [value]="t.id">
+        {{t.nome}} </mat-option>
+    </mat-select>
+    <mat-error *ngIf="dadosFuncionaisForm.get('funcao')?.hasError('required')">
+      *Campo obrigatório.
+    </mat-error>
+  </mat-form-field>
+  <br />
+
+  <mat-form-field appearance="standard">
+    <mat-label>Departamento</mat-label>
+    <mat-select required formControlName="departamento">
+      <mat-option *ngFor="let t of departamentos" [value]="t.id">
+        {{t.nome}} </mat-option>
+    </mat-select>
+    <mat-error *ngIf="dadosFuncionaisForm.get('departamento')?.hasError('required')">
+      *Campo obrigatório.
+    </mat-error>
+  </mat-form-field>
+  <br />
+
+
+
+  <div fxLayout="row" fxLayoutAlign="end center" >
+    <button mat-button color="primary" (click)="salvar()">Salvar</button>
+  </div>
+
+</form>

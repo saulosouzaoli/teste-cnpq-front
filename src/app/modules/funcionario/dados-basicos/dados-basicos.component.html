@@ -1,0 +1,52 @@
+<form [formGroup]="dadosBasicosForm">
+
+  <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-around start" class="form-2-columns">
+
+    <div fxFlex>
+      <mat-form-field appearance="standard">
+        <mat-label>Nome</mat-label>
+        <input matInput required formControlName="nome" maxlength="200" minlength="4">
+        <mat-error *ngIf="dadosBasicosForm.get('nome')?.hasError('required')">
+          *Campo obrigatório.
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field appearance="standard">
+        <mat-label>CPF</mat-label>
+        <input matInput required formControlName="cpf" maxlength="11" minlength="11" mask="000.000.00-00">
+        <mat-error *ngIf="dadosBasicosForm.get('cpf')?.hasError('required')">
+          *Campo obrigatório.
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field appearance="standard">
+        <mat-label>RG</mat-label>
+        <input matInput required formControlName="rg" maxlength="15" minlength="4">
+        <mat-error *ngIf="dadosBasicosForm.get('rg')?.hasError('required')">
+          *Campo obrigatório.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div fxFlex>
+      <mat-form-field appearance="standard">
+        <mat-label>Nome Pai</mat-label>
+        <input matInput formControlName="nomePai" maxlength="255" minlength="3">
+        <mat-error *ngIf="dadosBasicosForm.get('nomePai')?.hasError('required')">
+          *Campo obrigatório.
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field appearance="standard">
+        <mat-label>Nome Mãe</mat-label>
+        <input matInput required formControlName="nomeMae" maxlength="255" minlength="3">
+        <mat-error *ngIf="dadosBasicosForm.get('nomeMae')?.hasError('required')">
+          *Campo obrigatório.
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+<hr />

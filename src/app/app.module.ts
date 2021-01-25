@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,10 +19,9 @@ import { PrincipalComponent } from './modules/principal/principal.component';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   entryComponents:[LoginComponent],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
