@@ -38,6 +38,7 @@ export class ListagemComponent implements OnInit, AfterViewInit {
         }
 
       });
+      this.dataSourceRegistroPonto = new RegistroPontoDataSource(registroPontoService);
   }
 
 

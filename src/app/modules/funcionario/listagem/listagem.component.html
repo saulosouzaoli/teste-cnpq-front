@@ -11,6 +11,11 @@
     <td mat-cell *matCellDef="let element"> {{element.departamento.nome}} </td>
   </ng-container>
 
+  <ng-container matColumnDef="funcao.nome">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Função </th>
+      <td mat-cell *matCellDef="let element"> {{element.funcao.nome}} </td>
+    </ng-container>
+
 
   <ng-container matColumnDef="detalhes">
     <th mat-header-cell *matHeaderCellDef> Detalhes </th>

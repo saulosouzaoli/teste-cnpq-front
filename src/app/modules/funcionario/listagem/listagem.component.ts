@@ -16,7 +16,7 @@ export class ListagemComponent implements OnInit,AfterViewInit {
 
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  displayedColumns: string[] = ['matricula', 'departamento.nome', 'detalhes'];
+  displayedColumns: string[] = ['matricula', 'departamento.nome','funcao.nome', 'detalhes'];
   dataSourceFuncionario: FuncionarioDataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -25,25 +25,16 @@ export class ListagemComponent implements OnInit,AfterViewInit {
     private router: Router,
     public funcionarioService:FuncionarioService) {
 
+      this.dataSourceFuncionario = new FuncionarioDataSource(funcionarioService);
     }
 
   ngOnInit(): void {
-    this.dataSourceFuncionario = new FuncionarioDataSource(this.funcionarioService);
-    if(this.paginator){
-      this.paginator._intl.itemsPerPageLabel = 'Registros por página';
-      this.paginator._intl.nextPageLabel = 'Próximo';
-      this.paginator._intl.previousPageLabel = 'Anterior';
-      this.paginator._intl.lastPageLabel = 'Última';
-      this.paginator._intl.firstPageLabel = 'Primeira';
-    }
-    this.carregar();
-
-
+    setTimeout(() => { this.carregar(); }, 1000);
   }
   carregar(){
 
-    this.dataSourceFuncionario.carregarDados( 0,
-      5, this.sort.active,
+    this.dataSourceFuncionario.carregarDados( this.paginator.pageIndex,
+      this.paginator.pageSize, this.sort.active,
       this.sort.direction);
   }
 
