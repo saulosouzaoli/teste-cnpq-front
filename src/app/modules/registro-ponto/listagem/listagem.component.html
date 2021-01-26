@@ -1,0 +1,42 @@
+<p>Matricula :{{funcionario?.matricula}}</p>
+<br/>
+
+<table mat-table [dataSource]="dataSourceRegistroPonto" matSort>
+
+  <ng-container matColumnDef="data">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Data</th>
+    <td mat-cell *matCellDef="let element"> {{element.data  }} </td> <!--| date:"dd/MM/yyyy" :'-1:00'-->
+  </ng-container>
+
+  <ng-container matColumnDef="entrada1">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Entrada 1 </th>
+    <td mat-cell *matCellDef="let element"> {{element.entrada1 }} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="saida1">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Saida 1 </th>
+    <td mat-cell *matCellDef="let element"> {{element.saida1 }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="entrada2">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Entrada 2 </th>
+    <td mat-cell *matCellDef="let element"> {{element.entrada2 }} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="saida2">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Saida 2 </th>
+    <td mat-cell *matCellDef="let element"> {{element.saida2 }} </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+  </tr>
+</table>
+
+
+<mat-paginator [length]="dataSourceRegistroPonto.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 15, 20, 25]"
+  showFirstLastButtons>
+</mat-paginator>

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DadoBasicoComponent } from './dado-basico.component';
+import { MensagemComponent } from './mensagem.component';
 
-describe('DadoBasicoComponent', () => {
-  let component: DadoBasicoComponent;
-  let fixture: ComponentFixture<DadoBasicoComponent>;
+describe('MensagemComponent', () => {
+  let component: MensagemComponent;
+  let fixture: ComponentFixture<MensagemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DadoBasicoComponent ]
+      declarations: [ MensagemComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DadoBasicoComponent);
+    fixture = TestBed.createComponent(MensagemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

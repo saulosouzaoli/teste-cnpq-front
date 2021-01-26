@@ -1,32 +1,29 @@
-import { NgModule } from '@angular/core';
+
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FuncionarioComponent } from './funcionario/funcionario.component';
-import { DadoBasicoComponent } from './funcionario/dado-basico/dado-basico.component';
-import { EnderecoComponent } from './funcionario/endereco/endereco.component';
-import { ContatoComponent } from './funcionario/contato/contato.component';
-import { DadoFuncionalComponent } from './funcionario/dado-funcional/dado-funcional.component';
-import { RegistroPontoComponent } from './registro-ponto/registro-ponto.component';
-import { ListagemComponent } from './funcionario/listagem/listagem.component';
+import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './modules/login/login.component';
+import { PrincipalComponent } from './modules/principal/principal.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FuncionarioComponent,
-    DadoBasicoComponent,
-    EnderecoComponent,
-    ContatoComponent,
-    DadoFuncionalComponent,
-    RegistroPontoComponent,
-    ListagemComponent
+    LoginComponent,
+    PrincipalComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule,
+    BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [DatePipe],
+  entryComponents:[LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

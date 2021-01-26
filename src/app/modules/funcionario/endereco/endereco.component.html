@@ -1,1 +1,80 @@
-<p>endereco works!</p>
+<form [formGroup]="enderecoForm">
+
+  <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-around start" class="form-2-columns">
+
+    <div fxFlex>
+
+
+
+
+      <mat-form-field appearance="standard">
+        <mat-label>Descrição do Endereço</mat-label>
+        <input matInput formControlName="descricao" maxlength="100">
+      </mat-form-field>
+      <br />
+
+      <mat-form-field appearance="standard">
+        <mat-label>Endereco</mat-label>
+        <input matInput required formControlName="endereco" maxlength="255" minlength="4">
+        <mat-error *ngIf="enderecoForm.get('endereco')?.hasError('required')">
+          *Campo obrigatório.
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field appearance="standard">
+        <mat-label>Complemento</mat-label>
+        <input matInput formControlName="complemento" maxlength="255">
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="standard">
+        <mat-label>CEP</mat-label>
+        <input matInput required formControlName="cep" mask="00.000-000">
+        <mat-error *ngIf="enderecoForm.get('cep')?.hasError('required')">
+          *Campo obrigatório.
+        </mat-error>
+      </mat-form-field>
+      <br />
+    </div>
+    <div fxFlex>
+
+
+
+      <mat-form-field appearance="standard">
+        <mat-label>Bairro</mat-label>
+        <input matInput required formControlName="bairro" maxlength="100" minlength="4">
+        <mat-error *ngIf="enderecoForm.get('bairro')?.hasError('required')">
+          *Campo obrigatório.
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <mat-form-field appearance="standard">
+        <mat-label>Cidade</mat-label>
+        <input matInput required formControlName="cidade" maxlength="100" minlength="4">
+        <mat-error *ngIf="enderecoForm.get('cidade')?.hasError('required')">
+          *Campo obrigatório.
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field appearance="standard">
+        <mat-label>Estado</mat-label>
+        <mat-select required formControlName="uf">
+          <mat-option *ngFor="let uf of ufs" [value]="uf">
+            {{uf|estado}} </mat-option>
+        </mat-select>
+        <mat-error *ngIf="enderecoForm.get('uf')?.hasError('required')">
+          *Campo obrigatório.
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+
+  <app-mensagem ></app-mensagem>
+  <div fxLayout="row" fxLayoutAlign="end center" >
+      <button mat-button color="primary" (click)="salvar()">Salvar</button>
+    </div>
+</form>

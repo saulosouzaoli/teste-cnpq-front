@@ -1,1 +1,54 @@
-<p>contato works!</p>
+<form [formGroup]="contatoForm">
+
+  <mat-form-field appearance="standard">
+    <mat-label>Contato</mat-label>
+    <input matInput required formControlName="contato" maxlength="200" minlength="4" [mask]="getMask()">
+    <mat-error *ngIf="contatoForm.get('contato')?.hasError('required')">
+      *Campo obrigatório.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="standard" style="margin-left:10px">
+    <mat-label>Tipo Contato</mat-label>
+    <mat-select required formControlName="valorTipoContato">
+      <mat-option *ngFor="let t of tipos" [value]="t">
+        {{t|tipoContato}} </mat-option>
+    </mat-select>
+    <mat-error *ngIf="contatoForm.get('valorTipoContato')?.hasError('required')">
+      *Campo obrigatório.
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-icon-button (click)="add()">
+    <mat-icon>add</mat-icon>
+  </button>
+
+</form>
+
+<app-mensagem></app-mensagem>
+<table mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="contato">
+    <th mat-header-cell *matHeaderCellDef> Contato </th>
+    <td mat-cell *matCellDef="let element"> {{element.contato}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="tipoContato">
+    <th mat-header-cell *matHeaderCellDef> Tipo</th>
+    <td mat-cell *matCellDef="let element"> {{element.valorTipoContato|tipoContato}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="excluir">
+    <th mat-header-cell *matHeaderCellDef> Excluir</th>
+    <td mat-cell *matCellDef="let element"> <button mat-icon-button>
+        <mat-icon>delete</mat-icon>
+      </button></td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+  </tr>
+</table>
+
+<mat-paginator [length]="dataSource.data.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 15, 20, 25]"
+  showFirstLastButtons>
+</mat-paginator>
