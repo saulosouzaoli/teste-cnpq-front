@@ -1,8 +1,11 @@
+
+import { MensagemComponent } from 'src/app/shared/components/mensagem/mensagem.component';
+
 import { EnderecoService } from './../../../services/endereco.service';
 import { Endereco } from './../../../models/endereco';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Funcionario } from 'src/app/models/funcionario';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-endereco',
@@ -13,9 +16,10 @@ export class EnderecoComponent implements OnInit {
 
   @Input()
   funcionario: Funcionario;
-
+  endereco: Endereco = new Endereco();
   enderecoForm: FormGroup = this.preencheEndereco(new Endereco());
 
+  @ViewChild(MensagemComponent) mensagem:MensagemComponent;
   ufs: string[] = [];
 
   constructor(public enderecoService: EnderecoService) { }
@@ -24,7 +28,12 @@ export class EnderecoComponent implements OnInit {
     this.ufs = this.enderecoService.getUf();
 
     this.enderecoService.buscarPorFuncionario(this.funcionario).subscribe(
-      resp => this.preencheEndereco(resp)
+      resp => {
+        if (resp) {
+          this.endereco = resp;
+          this.enderecoForm = this.preencheEndereco(resp);
+        }
+      }
     );
   }
 
@@ -43,4 +52,23 @@ export class EnderecoComponent implements OnInit {
     });
   }
 
+  salvar() {
+    this.preparaEndereco();
+    this.enderecoService.save(this.endereco).subscribe(
+      db => {
+        this.endereco = db;
+        this.preencheEndereco(db);
+        this.mensagem.iniciarContagem();
+      });
+  }
+  preparaEndereco() {
+    this.endereco.funcionario = this.funcionario;
+    this.endereco.descricao = this.enderecoForm.value.descricao;
+    this.endereco.endereco = this.enderecoForm.value.endereco;
+    this.endereco.complemento = this.enderecoForm.value.complemento;
+    this.endereco.cep = this.enderecoForm.value.cep;
+    this.endereco.bairro = this.enderecoForm.value.bairro;
+    this.endereco.cidade = this.enderecoForm.value.cidade;
+    this.endereco.uf = this.enderecoForm.value.uf;
+  }
 }

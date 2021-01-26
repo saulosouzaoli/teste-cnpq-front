@@ -1,3 +1,6 @@
+
+import { MensagemComponent } from 'src/app/shared/components/mensagem/mensagem.component';
+import { ContatoService } from './../../../services/contato.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,9 +16,10 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 export class ContatoComponent implements OnInit {
   @Input()
   funcionario: Funcionario;
-  contato:Contato;
+  contato:Contato= new Contato();
   contatoForm: FormGroup = this.preencheContato(new Contato());
 
+  @ViewChild(MensagemComponent) mensagem:MensagemComponent;
   dataSource = new MatTableDataSource<Contato>();
   displayedColumns: string[] = ['contato','tipoContato', 'excluir'];
   private paginator: MatPaginator;
@@ -34,9 +38,11 @@ export class ContatoComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  constructor(public contatoService:ContatoService) { }
 
   ngOnInit(): void {
+
+    this.buscarContatos();
   }
 
   getMask(){
@@ -44,7 +50,14 @@ export class ContatoComponent implements OnInit {
   }
 
   add(){
-
+    this.preparaContato();
+    this.contatoService.save(this.contato).subscribe(
+      db => {
+        this.buscarContatos();
+        this.contato = new Contato();
+        this.preencheContato(db);
+        this.mensagem.iniciarContagem();
+      });
   }
 
 
@@ -55,4 +68,17 @@ export class ContatoComponent implements OnInit {
     });
   }
 
+
+  salvar() {
+
+  }
+  preparaContato() {
+    this.contato.funcionario = this.funcionario;
+    this.contato.contato = this.contatoForm.value.contato;
+    this.contato.valorTipoContato = this.contatoForm.value.valorTipoContato;
+  }
+
+  buscarContatos(){
+    this.contatoService.buscarPorFuncionario(this.funcionario).subscribe(c=>this.dataSource.data = c);
+  }
 }

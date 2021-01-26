@@ -13,7 +13,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FuncionarioComponent } from './funcionario.component';
 
 
-
 @NgModule({
   declarations: [FormularioComponent,
     ContatoComponent,

@@ -8,6 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './modules/login/login.component';
 import { PrincipalComponent } from './modules/principal/principal.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PrincipalComponent } from './modules/principal/principal.component';
     SharedModule,
     BrowserAnimationsModule,
   ],
+  providers: [DatePipe],
   entryComponents:[LoginComponent],
   bootstrap: [AppComponent]
 })

@@ -32,8 +32,8 @@
     </mat-error>
   </mat-form-field>
   <br />
-
-
+  <button mat-button color="primary" *ngIf="exibirDadosPessoais()" (click)="verRegistroPonto()">Ver Registros de Ponto</button>
+  <app-mensagem ></app-mensagem>
 
   <div fxLayout="row" fxLayoutAlign="end center" >
     <button mat-button color="primary" (click)="salvar()">Salvar</button>

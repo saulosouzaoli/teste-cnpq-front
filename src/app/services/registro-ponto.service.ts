@@ -23,7 +23,7 @@ export class RegistroPontoService extends GenericService<RegistroPonto> {
   }
 
 
-  buscar(page: number, linesPerPage: number, orderBy: string, direction: string,funcionario:Funcionario): Observable<Page<RegistroPonto>> {
+  buscar(page: number, linesPerPage: number, orderBy: string, direction: string,idFuncionario:number): Observable<Page<RegistroPonto>> {
     let params = new HttpParams();
     if (page)
       params = params.set('pagina', page + '');
@@ -33,8 +33,8 @@ export class RegistroPontoService extends GenericService<RegistroPonto> {
       params = params.set('ordernarPor', orderBy);
     if (direction)
       params = params.set('direcao', direction);
-      if (funcionario)
-      params = params.set('funcionario', funcionario.id+"");
+      if (idFuncionario)
+      params = params.set('funcionario', idFuncionario+"");
 
 
     return this.http.get<Page<RegistroPonto>>(this.getUrlCompleta(`/buscar/`), { params: params });

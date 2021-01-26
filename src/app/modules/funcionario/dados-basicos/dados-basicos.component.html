@@ -14,7 +14,7 @@
 
       <mat-form-field appearance="standard">
         <mat-label>CPF</mat-label>
-        <input matInput required formControlName="cpf" maxlength="11" minlength="11" mask="000.000.00-00">
+        <input matInput required formControlName="cpf" maxlength="14" minlength="14" >
         <mat-error *ngIf="dadosBasicosForm.get('cpf')?.hasError('required')">
           *Campo obrigatório.
         </mat-error>
@@ -48,5 +48,9 @@
       </mat-form-field>
     </div>
   </div>
+
+  <app-mensagem ></app-mensagem>
+  <div fxLayout="row" fxLayoutAlign="end center" >
+      <button mat-button color="primary" (click)="salvar()">Salvar</button>
+    </div>
 </form>
-<hr />

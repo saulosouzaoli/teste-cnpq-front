@@ -1,3 +1,5 @@
+import { MensagemComponent } from './components/mensagem/mensagem.component';
+
 import { TipoContatoPipe } from './pipe/tipo-contato.pipe';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,7 +10,9 @@ import { EstadoPipe } from './pipe/estado-pipe';
 import { MaterialModule } from './material.module';
 @NgModule({
   declarations: [
-    EstadoPipe,TipoContatoPipe
+    EstadoPipe,
+    TipoContatoPipe,
+    MensagemComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +32,9 @@ import { MaterialModule } from './material.module';
     HttpClientModule,
     MaterialModule,
     FlexLayoutModule,
-    EstadoPipe,TipoContatoPipe
+    EstadoPipe,
+    TipoContatoPipe,
+    MensagemComponent
   ]
 })
 export class SharedModule { }
